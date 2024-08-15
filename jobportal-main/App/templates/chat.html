@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e5ddd5;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+
+        #app-container {
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Sidebar for recipient list */
+        #recipient-list {
+            width: 30%;
+            background-color: #f8f9fa;
+            border-right: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        #recipient-list ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        #recipient-list li {
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.2s;
+        }
+
+        #recipient-list li:hover {
+            background-color: #e9ecef;
+        }
+
+        #recipient-list li img {
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #recipient-list li span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Chat container */
+        #chat-container {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            background-color: #efeae2;
+            overflow: hidden;
+        }
+
+        /* Chat header */
+        #chat-header {
+            background-color: #075E54;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #chat-header span {
+            margin-left: 15px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* Chat messages */
+        #messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            max-width: 60%;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #dcf8c6;
+            align-self: flex-end;
+        }
+
+        .message.received {
+            background-color: #fff;
+            align-self: flex-start;
+        }
+
+        /* Message input area */
+        #message-input-container {
+            display: flex;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-top: 1px solid #ccc;
+        }
+
+        #message-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: #128C7E;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #075E54;
+        }
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <!-- Left side: Recipient list -->
+        <div id="recipient-list">
+            <ul id="recipients">
+                {% for recruiter in recruiters %}
+                <li onclick="openChat('{{ recruiter.user.id }}', '{{ recruiter.user.username }}')">
+                    <img src="profile_picture_placeholder.jpg" alt="Avatar" width="40" height="40">
+                    <span>{{ recruiter.user.username }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Right side: Chat window -->
+        <div id="chat-container">
+            <div id="chat-header">
+                <span id="chat-header-username">Select a chat</span>
+            </div>
+            <div id="messages">
+                <!-- Messages will be appended here -->
+            </div>
+            <div id="message-input-container">
+                <input type="text" id="message-input" placeholder="Type your message..." />
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'chat.js' %}"></script>
+</body>
+</html>
