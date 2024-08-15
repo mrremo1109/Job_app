@@ -1,11 +1,7 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
 
 {% block title %}Profile{% endblock %}
 
-=======
-{% block title %}Profile{% endblock %}
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
 {% block data %}
 <div class="container">
     <h1>PROFILE</h1>
@@ -23,12 +19,8 @@
                     <p><strong>Resume:</strong> <a href="{{ profile.resume.url }}" download>Download</a></p>
                 {% endif %}
                 {% if profile_type == 'recruiter' %}
-<<<<<<< HEAD
                     <p><strong>Company:</strong> {{ profile.company }}</p>
                 {% endif %}
-=======
-                <p><strong>Company:</strong> {{ profile.company }}</p>{% endif %}
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
                 <p><strong>Number of 
                     {% if profile_type == 'job_seeker' %}
                         Applied Posts
@@ -38,7 +30,6 @@
                 :</strong> {{ applied_posts|length }}</p>
                 <a href="{% url 'logoutUser' %}" class="btn btn-danger mt-3">Logout</a>
                 <a href="{% url 'edit_profile' %}" class="btn btn-primary mt-3">Edit Profile</a>
-<<<<<<< HEAD
 
                 <!-- Open Chat Button -->
                 <a href="http://localhost:3000" class="btn btn-success mt-3">Open Chat</a>
@@ -51,10 +42,6 @@
             {% endif %}
         </div>
 
-=======
-            {% endif %}
-        </div>
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
         <div class="col-md-6">
             {% if profile_type == 'job_seeker' %}
                 <h2>Applied Posts</h2>
@@ -100,10 +87,7 @@
             {% endif %}
         </div>
     </div>
-<<<<<<< HEAD
 
-=======
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
     {% if profile_type == 'recruiter' %}
     <div class="row mt-3">
         <div class="col-md-12">

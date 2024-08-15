@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 from django.shortcuts import redirect
-=======
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
 from django.urls import path 
 from . import views
 
@@ -20,11 +17,7 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('application/<int:application_id>/update/', views.update_application_status, name='update_application_status'),
     path('accept_application/<int:application_id>/', views.accept_application, name='accept_application'),
-<<<<<<< HEAD
     path('reject_application/<int:application_id>/', views.reject_application, name='reject_application'), 
     path('chat/<int:receiver_id>/messages/', views.retrieve_chat_messages, name='retrieve_chat_messages'),
     path('chat/send/', views.send_message, name='send_message'),
-=======
-    path('reject_application/<int:application_id>/', views.reject_application, name='reject_application'),   
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
 ]

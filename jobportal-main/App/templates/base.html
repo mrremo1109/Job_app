@@ -42,7 +42,6 @@
     <!--************************** navbar start  **************************-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
-<<<<<<< HEAD
           <a class="navbar-brand" href="#" style="font-family: 'Times New Roman', Times, serif, Tahoma, Geneva, Verdana, sans-serif;">JOBPORTAL</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,61 +51,31 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" style="font-family: Times New Roman;" href="{% url 'home' %}">Home</a>
-=======
-          <a class="navbar-brand" href="#" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">JobPortal.com</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
               </li>
 
               {% if not user.is_authenticated %}
               <li class="nav-item">
-<<<<<<< HEAD
                 <a class="nav-link" aria-current="page" href="{% url 'registerRecruiter' %}" style="font-family: Times New Roman;" title="Registration for Job Poster">Register</a>
-=======
-                <a class="nav-link" aria-current="page" href="{% url 'registerRecruiter' %}" title="Registration for Job Poster">Register</a>
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
               </li>
               {% endif %}
 
              
               <li class="nav-item">
-<<<<<<< HEAD
                 <a class="nav-link" aria-current="page" href="{% url 'home' %}#post" style="font-family: Times New Roman;" title="Add job post">Post</a>
-=======
-                <a class="nav-link" aria-current="page" href="{% url 'home' %}#post" title="Add job post">Post</a>
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
               </li>
               
 
               <li class="nav-item">
-<<<<<<< HEAD
                 <a class="nav-link" aria-current="page" style="font-family: Times New Roman;" href="{% url 'home' %}#feedback">Feedback</a>
-=======
-                <a class="nav-link" aria-current="page" href="{% url 'home' %}#feedback">Feedback</a>
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
               </li>
 
               {% if not user.is_authenticated %}
               <li class="nav-item">
-<<<<<<< HEAD
                 <a class="nav-link" aria-current="page" style="font-family: Times New Roman;" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
               </li>
               {% else %}
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" style="font-family: Times New Roman;" href="{% url 'profile' %}" title="Profile"><i class="fas fa-user"></i></a>
-=======
-                <a class="nav-link" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{% url 'profile' %}" title="Profile"><i class="fas fa-user"></i></a>
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
               </li>
               {% endif %}
               
@@ -119,11 +88,6 @@
     {% block data %}
     {% endblock %}
 
-<<<<<<< HEAD
-=======
-    
-
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
     <div class="container-fluid bg-secondary" id="contact">
       <div class="row d-flex justify-content-between">
         <div class="col-md-3 p-3">
@@ -137,13 +101,8 @@
         <div class="col-md-3 p-3">
           <p class="fs-3 h5 text-center">Find us at</p>
           <div class="text-center text-light">
-<<<<<<< HEAD
             <a href="https://github.com/mrremo1109" class=" text-light"><i class="fa-brands fa-github fs-2"></i></a>
             <a href="www.linkedin.com/in/ajay-kalyanasundaram-8632b0208" class=" text-light"><i class="fa-brands fa-linkedin fs-2"></i></a>
-=======
-            <a href="" class=" text-light"><i class="fa-brands fa-github fs-2"></i></a>
-            <a href="" class=" text-light"><i class="fa-brands fa-linkedin fs-2"></i></a>
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
           </div>
         </div>
 
@@ -151,15 +110,9 @@
         <div class="col-md-3 p-3">
           <p class="fs-3 h5 text-center">Contact us</p>
           <div class="text-center useful-link-div text-light">
-<<<<<<< HEAD
             <p><i class="fa-solid fa-phone"></i> 07393169946</p>
             <p><i class="fas fa-envelope"></i> ajaykalyan011@gmail.com</p>
             <p><i class="fas fa-location-dot"></i> Nottingham, UK</p>
-=======
-            <p><i class="fa-solid fa-phone"></i> +91 70304 43380</p>
-            <p><i class="fas fa-envelope"></i> ajayghodke@gmail.com</p>
-            <p><i class="fas fa-location-dot"></i> GCOE, Jalgaon, NH 6</p>
->>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
           </div>
         </div>
         
