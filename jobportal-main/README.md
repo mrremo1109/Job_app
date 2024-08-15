@@ -66,6 +66,20 @@ python -m venv venv
 ```
 9. Access the website in your web browser at [http://localhost:8000/](http://localhost:8000/)
 
+10. If your running on docker Type this command:
+```
+docker compose up
+```
+
+For Node.JS chat function, Follow the below steps:
+1. Install the socket.io :
+```
+npm install socket.io
+```
+2. Run the node server:
+```
+node server.js
+```
 ## Usage
 
 - To access the admin panel, go to [http://localhost:8000/admin/](http://localhost:8000/admin/) and log in with the superuser credentials you created earlier. You can manage users, job postings, and other site content from the admin panel.
