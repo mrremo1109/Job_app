@@ -11,6 +11,7 @@
             <p class="h2">&QUOT; Big Journey Begin With Small Steps. &QUOT;</p>
         </div>
         {% if not user.is_authenticated %}
+<<<<<<< HEAD
         <div class="col-md-5 col-sm-7 col-11 m-md-1 p-4 form-div"  data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1000" data-aos-easing="ease-in-sine">
             <form action="" method="post" class="was-validated">
                 {% csrf_token %}
@@ -19,21 +20,43 @@
                 </div>
                 <div class="form-group mt-3">
                     <label for="fname" style="font-family: Times New Roman;">First Name</label>
+=======
+        <div class="col-md-5 col-sm-7 col-11 m-md-1 p-4 form-div" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1000" data-aos-easing="ease-in-sine">
+            <form action="" method="post" class="was-validated">
+                {% csrf_token %}
+                <div class="d-grid">
+                    <button class="btn btn-dark">Register Here Candidate</button>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="fname">First Name</label>
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
                     <input type="text" name="fname" class="form-control" id="fname" required>
                 </div>
 
                 <div class="form-group mt-3">
+<<<<<<< HEAD
                     <label for="lname" style="font-family: Times New Roman;">Last Name</label>
+=======
+                    <label for="lname">Last Name</label>
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
                     <input type="text" name="lname" class="form-control" id="lname" required>
                 </div>
 
                 <div class="form-group mt-3">
+<<<<<<< HEAD
                     <label for="email" style="font-family: Times New Roman;">Email-ID</label>
+=======
+                    <label for="email">Email-ID</label>
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
                     <input type="email" name="email" class="form-control" id="email" required>
                 </div>
 
                 <div class="form-group mt-3">
+<<<<<<< HEAD
                     <label for="mobile" style="font-family: Times New Roman;">Mobile no.</label>
+=======
+                    <label for="mobile">Mobile no.</label>
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
                     <div class="input-group">
                         <span class="input-group-text">+91 </span>
                         <input type="text" name="mobile" class="form-control" id="mobile" required>
@@ -41,7 +64,11 @@
                 </div>
 
                 <div class="form-group mt-3">
+<<<<<<< HEAD
                     <label for="password" style="font-family: Times New Roman;">Password</label>
+=======
+                    <label for="password">Password</label>
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
                     <input type="password" name="password" class="form-control" id="password" required>
                 </div>
                 <input type="checkbox" id="checker" onclick="PasswordChecker()"> See password
@@ -54,7 +81,11 @@
                 </ul>
 
                 <div class="d-grid mt-4">
+<<<<<<< HEAD
                     <button type="submit" style="font-family: Times New Roman;" class="btn btn-outline-dark">Register</button>
+=======
+                    <button type="submit" class="btn btn-outline-dark">Register</button>
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
                 </div>
             </form>
         </div>
@@ -65,7 +96,11 @@
 
 <section id="post">
     <div class="container job-post-container">
+<<<<<<< HEAD
         <p class="h2 text-center" style="font-family: Times New Roman;" >POST</p>
+=======
+        <p class="h2 text-center">POST</p>
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
         {% if user.is_staff %}
         <div class="row">
             <div class="col-lg-12 my-1">
@@ -87,7 +122,11 @@
         <!-- Split screen layout -->
         <div class="row">
             <!-- Job Details -->
+<<<<<<< HEAD
             <div class="col-lg-6 mb-4" >
+=======
+            <div class="col-lg-6 mb-4">
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
                 <div class="row d-flex">
                     {% now "Y-m-d" as todays_date %}
                     {% for i in jobs %}
@@ -151,7 +190,11 @@
 
 <section class="feedback-section" id="feedback">
     <div class="container-fluid feedback-container bg-dark text-light">
+<<<<<<< HEAD
         <p class="h2 text-center" style="font-family: Times New Roman;">FEEDBACK</p>
+=======
+        <p class="h2 text-center">FEEDBACK</p>
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
         <div class="row d-flex justify-content-around">
             <div class="col-lg-5 col-md-6 my-5" id="feed-scroll-container">
                 <div id="feed-scroll">
@@ -167,6 +210,7 @@
                 <form action="\feedback\" method="post" class="p-3">
                     {% csrf_token %}
                     <div class="form-group mt-3">
+<<<<<<< HEAD
                         <label for="feed-name" style="font-family: Times New Roman;">Name</label>
                         <input type="text" name="name" id="feed-name" class="form-control">
                     </div>
@@ -176,6 +220,17 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="feed-feedback" style="font-family: Times New Roman;">Feedback</label>
+=======
+                        <label for="feed-name">Name</label>
+                        <input type="text" name="name" id="feed-name" class="form-control">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="feed-email">Email</label>
+                        <input type="email" name="email" id="feed-email" class="form-control">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="feed-feedback">Feedback</label>
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
                         <textarea name="feedback" id="feed-feedback" class="form-control" rows="5"></textarea>
                     </div>
                     <div class="d-grid mt-3">
@@ -219,7 +274,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+<<<<<<< HEAD
                 <h4 class="modal-title" style="font-family: Times New Roman;">Post Job</h4>
+=======
+                <h4 class="modal-title">Post Job</h4>
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
                 <button class="btn btn-outline-dark btn-sm rounded-circle" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
             </div>
             <div class="modal-body">

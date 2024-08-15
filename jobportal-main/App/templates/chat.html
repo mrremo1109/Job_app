@@ -10,7 +10,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #e5ddd5;
+            background-color: #EDEDED;
             height: 100vh;
             overflow: hidden;
             display: flex;
@@ -20,12 +20,13 @@
             display: flex;
             height: 100%;
             width: 100%;
+            background-color: #EDEDED;
         }
 
         /* Sidebar for recipient list */
         #recipient-list {
             width: 30%;
-            background-color: #f8f9fa;
+            background-color: #2A2F32;
             border-right: 1px solid #ccc;
             display: flex;
             flex-direction: column;
@@ -44,12 +45,13 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #2F3B3B;
             transition: background-color 0.2s;
+            color: white;
         }
 
         #recipient-list li:hover {
-            background-color: #e9ecef;
+            background-color: #3C3C3C;
         }
 
         #recipient-list li img {
@@ -67,13 +69,13 @@
             width: 70%;
             display: flex;
             flex-direction: column;
-            background-color: #efeae2;
+            background-color: #EDEDED;
             overflow: hidden;
         }
 
         /* Chat header */
         #chat-header {
-            background-color: #075E54;
+            background-color: #128C7E;
             color: white;
             padding: 15px;
             display: flex;
@@ -94,19 +96,21 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
+            background-color: #ECE5DD;
         }
 
         .message {
             max-width: 60%;
             margin-bottom: 15px;
             padding: 10px 15px;
-            border-radius: 5px;
-            background-color: #dcf8c6;
+            border-radius: 8px;
+            background-color: #DCF8C6;
             align-self: flex-end;
+            word-wrap: break-word;
         }
 
         .message.received {
-            background-color: #fff;
+            background-color: #FFFFFF;
             align-self: flex-start;
         }
 
@@ -114,7 +118,7 @@
         #message-input-container {
             display: flex;
             padding: 10px;
-            background-color: #f0f0f0;
+            background-color: #F0F0F0;
             border-top: 1px solid #ccc;
         }
 
@@ -171,6 +175,80 @@
         </div>
     </div>
 
-    <script src="{% static 'chat.js' %}"></script>
+    <script>
+        const socket = io.connect('http://localhost:3000');
+        let currentReceiverId = null;
+        let currentReceiverName = null;
+
+        function openChat(receiverId, receiverName) {
+            currentReceiverId = receiverId;
+            currentReceiverName = receiverName;
+
+            // Update chat header with the current receiver's name
+            document.getElementById('chat-header-username').innerText = receiverName;
+
+            // Clear previous messages
+            document.getElementById('messages').innerHTML = '';
+
+            // Join the room
+            socket.emit('joinRoom', { room: `chat_{{ request.user.id }}_${receiverId}`, sender: "{{ request.user.username }}", receiver: receiverName });
+
+            // Fetch previous messages
+            fetch(`/chat/${receiverId}/messages/`)
+                .then(response => response.json())
+                .then(data => {
+                    const messagesContainer = document.getElementById('messages');
+                    data.forEach(message => {
+                        const newMessage = document.createElement('div');
+                        newMessage.className = `message ${message.sender === "{{ request.user.username }}" ? 'sent' : 'received'}`;
+                        newMessage.innerText = message.content;
+                        messagesContainer.appendChild(newMessage);
+                    });
+                });
+        }
+
+        // Handle incoming messages
+        socket.on('receiveMessage', function(data) {
+            if (data.receiver === currentReceiverName || data.sender === currentReceiverName) {
+                const messagesContainer = document.getElementById('messages');
+                const newMessage = document.createElement('div');
+                newMessage.className = `message ${data.sender === "{{ request.user.username }}" ? 'sent' : 'received'}`;
+                newMessage.innerText = data.content;
+                messagesContainer.appendChild(newMessage);
+
+                // Scroll to the bottom of the messages
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        });
+
+        // Send message function
+        function sendMessage() {
+            const messageInput = document.getElementById('message-input');
+            const content = messageInput.value;
+
+            if (content.trim() && currentReceiverId) {
+                // Send message to the server for persistence
+                fetch('/chat/send/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ content: content, receiver: currentReceiverId })
+                });
+
+                // Emit message via Socket.IO
+                socket.emit('sendMessage', {
+                    room: `chat_{{ request.user.id }}_${currentReceiverId}`,
+                    sender: "{{ request.user.username }}",
+                    receiver: currentReceiverName,
+                    content: content
+                });
+
+                // Clear the input
+                messageInput.value = '';
+            }
+        }
+    </script>
 </body>
 </html>

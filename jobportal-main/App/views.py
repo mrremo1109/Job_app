@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import json
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponseRedirect, JsonResponse
+=======
+from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponseRedirect
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
@@ -12,7 +17,10 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from .models import Job_Seeker, Recruiter, AppliedPost, Job_Post, Feedback, User
 from .forms import UserForm, JobSeekerProfileForm, RecruiterProfileForm
+<<<<<<< HEAD
 from django.db.models import Q
+=======
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
 
 
 # Create your views here.
@@ -376,6 +384,7 @@ def update_application_status(request, application_id):
         application.status = status
         application.save()
         messages.success(request, f'Application status updated to {status}.')
+<<<<<<< HEAD
         return redirect('profile')
 
 @login_required
@@ -426,3 +435,6 @@ def send_message(request):
             )
             return JsonResponse({'status': 'success'})
         return JsonResponse({'status': 'failure'}, status=400)
+=======
+        return redirect('profile')
+>>>>>>> cea0c8b141975ab6ace93ba729c91aad997cb299
