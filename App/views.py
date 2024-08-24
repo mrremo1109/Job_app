@@ -17,6 +17,14 @@ def home(request):
     today = datetime.now().strftime("%Y-%m-%d")
     today = datetime.date(datetime.strptime(today, "%Y-%m-%d"))
     users = User.objects.all()
+    
+    job_seeker_location = None
+    if request.user.is_authenticated and hasattr(request.user, 'job_seeker'):
+        job_seeker_location = {
+            'latitude': request.user.job_seeker.latitude,
+            'longitude': request.user.job_seeker.longitude,
+        }
+
     for i in jobs:
         if today - i.upto >= timedelta(2): 
             print(i.post)
@@ -63,7 +71,7 @@ def home(request):
             return HttpResponseRedirect('/')
 
 
-    return render(request, 'home.html', {'users': users, 'jobs' : jobs, 'feedbacks' : feeds, 'today' : today})
+    return render(request, 'home.html', {'users': users, 'jobs' : jobs, 'feedbacks' : feeds, 'today' : today, 'job_seeker_location': job_seeker_location,})
 
 
 def registerRecruiter(request):

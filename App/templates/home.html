@@ -120,6 +120,7 @@
                                 <div class="modal-footer">
                                     {% if user.is_authenticated and not user.is_staff %}
                                     <a class="btn btn-primary rounded-pill px-4" href="\apply\{{i.pk}}">Apply</a>
+                                    <button class="btn btn-info rounded-pill px-4" onclick="getDirections({{ i.user.latitude }}, {{ i.user.longitude }})">Get Directions</button>
                                     {% endif %}
                                     <button class="btn btn-warning rounded-pill px-4" data-bs-dismiss="modal">Close</button>
                                 </div>
@@ -142,6 +143,10 @@
 <script>
     var map;
     var marker;
+    var directionsRenderer;
+    var jobSeekerLat = {{ job_seeker_location.latitude|default:"null" }};
+    var jobSeekerLng = {{ job_seeker_location.longitude|default:"null" }};
+    
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -174,6 +179,8 @@
                 {featureType: 'water', elementType: 'labels.text.fill', stylers: [{color: '#92998d'}]}
             ]
         });
+        directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
     }
 
     function showRecruiterLocation(latitude, longitude) {
@@ -188,6 +195,30 @@
         });
         map.setCenter(location);
         map.setZoom(12);
+    }
+
+    function getDirections(destLat, destLng) {
+        if (jobSeekerLat === null || jobSeekerLng === null) {
+            alert("Job seeker's location is not available.");
+            return;
+        }
+
+        var directionsService = new google.maps.DirectionsService();
+
+        var request = {
+            origin: new google.maps.LatLng(jobSeekerLat, jobSeekerLng), // Job seeker's location
+            destination: new google.maps.LatLng(destLat, destLng),
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+
+        directionsService.route(request, function(result, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                directionsRenderer.setDirections(result);
+                map.setZoom(12); // Optionally adjust zoom level
+            } else {
+                alert('Directions request failed due to ' + status);
+            }
+        });
     }
 
     window.onload = initMap;
